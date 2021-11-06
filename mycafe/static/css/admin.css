@@ -1,0 +1,23 @@
+#header{
+    background: #5A020Cce;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #b95f6ace;
+}
+
+div.breadcrumbs {
+    background: #b95f6ace;
+
+}
+.selector-chosen h2{
+    background: #b95f6ace;
+    color: white;
+}
+input[type=submit], input[type=button]{
+    background: #b95f6ace;
+}
+
+input[type=submit]:hover, input[type=button]:hover{
+    background: rgb(145, 43, 43);
+}

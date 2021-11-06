@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+{%block title%} My Orders {%endblock%}
+
+{%block content%}
+
+<div class="my-form container p-5 my-5 rounded border border-warning">
+<h2 class="text-center">My Orders</h2>
+        <hr>
+        {% include "partials/_alerts.html" %}   
+
+    {%if not request.user.is_authenticated or request.user.is_anonymous%}
+        <h4 class='alert alert-warning'>
+            You are not registered on the site yet
+            <button  class='btn btn-dark'> 
+                    <a href="{%url 'signin'%}">ٍSign in</a>
+            </button>
+        </h4>
+    {%elif allOrders%}   
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Order Number</th>
+      <th scope="col">Date&Time</th>
+      <th scope="col">Items Count</th>
+      <th scope="col">Total</th>
+      <th scope="col">is Finished</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for order in allOrders%}
+    <tr>
+      <td> {{order.id}}</td>
+      <td> {{order.order_date}}</td>
+      <td> {{order.items_count}}</td>
+      <td> {{order.total}}$</td>
+
+      <td>
+         {%if order.is_finished == True%}
+         Yes
+         {%else%}
+         No
+         {%endif%}
+      </td>
+      
+
+    </tr>
+    {%empty%}
+    <h5 class="alert alert-wqrning">
+    No orders here
+    
+    </h5>
+    {%endfor%}
+  </tbody>
+</table>
+
+
+    {% else %}
+    <h4 class='alert alert-warning'>
+        no orders here
+                <button  class='btn btn-dark'> 
+                    <a href="{%url 'products'%}">ٍAll products</a>
+                </button>    </h4>
+    {% endif %}
+    </div>
+{% endblock content %}
